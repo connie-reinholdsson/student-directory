@@ -26,6 +26,7 @@ def print_menu
 puts "1. Input the students"
 puts "2. Show the students"
 puts "3. Save the list to students.csv"
+puts "4. Load the list from students.csv"
 puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -43,6 +44,8 @@ def process(selection)
     show_students
   when "3"
     save_students
+  when "4"
+    load_students
   when "9"
     exit #this will cause the program to terminate
   else puts "I don't know what you meant, try again"
@@ -81,32 +84,19 @@ def save_students
   file.close
 end
 
-
-
-#[ "a", "b", "c"].join => "abc" (A string.)
-#puts "Hello" samas as STDOUT.puts "Hello"
-
-#To write to a file instead of the input stream:
-#file.puts "This is written to a file."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def load_students
+  file = File.open("students.csv", "r") #Set variable 'file' to open file with read access.
+  file.readlines.each do |line| #Read all the lines into an array. .readlines it a method.
+    #and iterate over it.
+    name, cohort = line.chomp.split(',') #On every iteration,
+    #we discard the trailing new line character (.chomp) from the line,
+    #split it at comma (gives us an array with two elements) and assign them
+    #to name and cohort.
+    @students << {name: name, cohort: cohort.to_sym}
+    #Create a new hash and put it in a list of students. Cohort could be 12 options, so puts .to_sym.
+end
+file.close
+end
 
 
 
