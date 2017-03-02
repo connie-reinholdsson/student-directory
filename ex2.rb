@@ -1,3 +1,4 @@
+#TASK 2:
 #Modify your program to only print the students whose name begins with a specific letter.
 
 def input_students
@@ -23,24 +24,24 @@ puts "The students of Villains Academy"
 puts "-------------"
 end
 
-#START
-def print(students)
+def print(students, letter)
   students.each_with_index do |student, index|
     new_index = index + 1
     #Access the student names and call .split.
     letters = student[:name].split('') #Split into letters
-    if letters[0] == "M"
+    if letters[0] == letter.downcase
       puts "#{new_index}. #{student[:name]} (#{student[:cohort]} cohort)"
     else
     end
 end
 end
-#FINISH
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 #nothing happens until we call the methods
 students = input_students
 print_header
-print(students)
+#print(students)
 print_footer(students)
+print(students, "C")
