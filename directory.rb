@@ -25,6 +25,7 @@ end
 def print_menu
 puts "1. Input the students"
 puts "2. Show the students"
+puts "3. Save the list to students.csv"
 puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -40,6 +41,8 @@ def process(selection)
     input_students
   when "2"
     show_students
+  when "3"
+    save_students
   when "9"
     exit #this will cause the program to terminate
   else puts "I don't know what you meant, try again"
@@ -60,5 +63,52 @@ end
 def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
+
+def save_students
+  #open the file for writing, store the contents to 'file'.
+  file = File.open("students.csv", "w")
+  #iterate over the array of students
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    #For every iteration (name and cohort) we create a new array.
+    #The [] is for the new array.
+    #["Dr. Hannibal Lecter", :november]
+    csv_line = student_data.join(",")
+    #Join the name and cohort, with a ',' between.
+    file.puts csv_line
+    #Write the 'csv_line' to the file using puts.
+  end
+  file.close
+end
+
+
+
+#[ "a", "b", "c"].join => "abc" (A string.)
+#puts "Hello" samas as STDOUT.puts "Hello"
+
+#To write to a file instead of the input stream:
+#file.puts "This is written to a file."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 interactive_menu
