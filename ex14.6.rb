@@ -117,15 +117,6 @@ end
 
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    @name, cohort = line.chomp.split(',')
-    add_students
-end
-file.close
-end
-
-def load_students(filename = "students.csv")
   File.open(filename, "r") do |file| #Refactor to (do...end) block to access File class.
   file.readlines.each do |line|
     @name, cohort = line.chomp.split(',')
